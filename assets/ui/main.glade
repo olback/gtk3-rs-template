@@ -29,7 +29,6 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
     <property name="default-width">1250</property>
     <property name="default-height">600</property>
     <property name="icon-name">accessories-calculator</property>
-    <property name="type-hint">dialog</property>
     <property name="gravity">center</property>
     <property name="show-menubar">False</property>
     <child>
