@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/net/olback/template">
+		<!-- UI -->
+		{ui-files}
+		<!-- CSS -->
+		<file alias="css/app.css">
+			assets/css/app.css
+		</file>
+	</gresource>
+</gresources>

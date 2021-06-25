@@ -1,0 +1,7 @@
+/target
+/out
+
+# GKT
+*.glade~
+\#*.glade\#
+
