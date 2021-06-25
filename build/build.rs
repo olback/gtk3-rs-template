@@ -11,6 +11,7 @@ fn main() {
     let glade_data = glade::GladeData {
         version: &version,
         authors: env!("CARGO_PKG_AUTHORS"),
+        homepage: env!("CARGO_PKG_HOMEPAGE"),
     };
 
     out::output_dir();

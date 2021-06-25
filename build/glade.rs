@@ -8,6 +8,7 @@ use std::{
 pub struct GladeData<'a> {
     pub version: &'a String,
     pub authors: &'static str,
+    pub homepage: &'static str,
 }
 
 impl<'a> GladeData<'a> {
@@ -54,6 +55,7 @@ pub fn process(data: &GladeData) -> Vec<PathBuf> {
     let re_resource = Regex::new(r"(?P<r>resource:/)(?P<p>[a-z])").unwrap();
     let re_version = Regex::new(r"(?P<r>\{version\})").unwrap();
     let re_authors = Regex::new(r"(?P<r>\{authors\})").unwrap();
+    let re_homepage = Regex::new(r"(?P<r>\{homepage\})").unwrap();
 
     let mut processed_files = Vec::<PathBuf>::new();
 
@@ -67,6 +69,7 @@ pub fn process(data: &GladeData) -> Vec<PathBuf> {
         let after = re_resource.replace_all(&glade_xml_data, "$r//$p");
         let after = re_version.replace_all(&after, data.get_version_string().as_str());
         let after = re_authors.replace_all(&after, data.get_authors_string().as_str());
+        let after = re_homepage.replace_all(&after, data.homepage);
 
         let out_path = PathBuf::from("out").join(in_path.strip_prefix("assets").unwrap());
         let mut out_path_dir = out_path.clone();

@@ -1,6 +1,8 @@
 use regex::Regex;
 use std::{fs, path::PathBuf, process::Command};
 
+include!("../resource.rs");
+
 #[derive(Debug)]
 struct ResourceFile {
     alias: Option<String>,
@@ -30,12 +32,8 @@ impl ToString for ResourceFile {
 }
 
 pub fn generate_xml(glade_files: &[PathBuf]) {
-    const INPUT: &str = concat!(
-        "assets/net.olback.",
-        env!("CARGO_PKG_NAME"),
-        ".gresource.xml"
-    );
-    const TARGET: &str = concat!("out/net.olback.", env!("CARGO_PKG_NAME"), ".gresource.xml");
+    const INPUT: &str = "assets/assets.gresource.xml";
+    const TARGET: &str = "out/assets.gresource.xml";
 
     let mut glade_resources = Vec::<ResourceFile>::new();
 
@@ -58,15 +56,17 @@ pub fn generate_xml(glade_files: &[PathBuf]) {
         .join("\n        ");
     let re_ui = Regex::new(r"(?P<r>\{ui-files\})").unwrap();
     let glade_xml_data = fs::read_to_string(INPUT).unwrap();
-    let after = re_ui.replace_all(&glade_xml_data, out.as_str());
+    let after = re_ui
+        .replace_all(&glade_xml_data, out.as_str())
+        .replace("{prefix}", resource!(""));
 
     fs::write(TARGET, after.to_owned().as_bytes()).unwrap();
 }
 
 pub fn generate_resources() {
     const COMMAND: &str = "glib-compile-resources";
-    const INPUT: &str = "out/net.olback.MathExprEval.gresource.xml";
-    const TARGET: &str = "mathexpreval.gresource";
+    const INPUT: &str = "out/assets.gresource.xml";
+    const TARGET: &str = "assets.gresource";
 
     let exists = Command::new("which").arg(COMMAND).output().unwrap();
     if !exists.status.success() {

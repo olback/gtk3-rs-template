@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <!-- Prefix automatically generated -->
+    <gresource prefix="{prefix}">
+        <!-- UI, automatically generated -->
+        {ui-files}
+        <!-- CSS -->
+        <file alias="css/app.css">assets/css/app.css</file>
+        <!-- Images/Icons -->
+        <!-- Whatever -->
+    </gresource>
+</gresources>

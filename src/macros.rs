@@ -17,10 +17,3 @@ macro_rules! get_obj {
         }
     };
 }
-
-#[macro_export]
-macro_rules! resource {
-    ($res:expr) => {
-        concat!("/net/olback/", env!("CARGO_PKG_NAME"), "/", $res)
-    };
-}

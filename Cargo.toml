@@ -1,8 +1,10 @@
 [package]
 name = "gtk3-rs-template"
 version = "0.1.0"
+authors = ["Edwin Svensson <gtk3-rs-template@olback.net>"]
 edition = "2018"
 build = "build/build.rs"
+homepage = "https://github.com/olback/gtk3-rs-template"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
